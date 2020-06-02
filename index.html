@@ -74,10 +74,16 @@
 
             //snake bite apple?
             if (snakeX == appleX && snakeY == appleY) {
+                // the old tail size is needed to properly display the counter, when the new length of the tailSize
+                // has increased by one
+                // without this: "Length: 99" --> "Length:100"
+                // with this solution: "Length: 99" --> "Length: 100"
+                oldTailSize = tailSize.toString().length;
+
                 tailSize++;
 
                 // imcrement length counter
-                points.innerHTML = points.innerHTML.substring(0, points.innerHTML.length - tailSize.toString().length) +
+                points.innerHTML = points.innerHTML.substring(0, points.innerHTML.length - oldTailSize) +
                     tailSize;
 
                 appleX = Math.floor(Math.random() * gridSize);
