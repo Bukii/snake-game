@@ -15,15 +15,20 @@
 <body>
     <h1>The one and only snake game!</h1>
     <p>created by Lukas W.</p>
+    <p id="points">Length: </p>
     <br>
     <canvas id="canvas" width="400" height="400"></canvas>
 
     <script>
-        var canvas, ctx;
+        var canvas, ctx, points;
 
         window.onload = function () {
             canvas = document.getElementById("canvas");
             ctx = canvas.getContext("2d");
+            points = document.getElementById("points");
+
+            // initial set of the length counter
+            points.innerHTML += tailSize;
 
             document.addEventListener("keydown", keyDownEvent);
 
@@ -69,6 +74,9 @@
             //snake bite apple?
             if (snakeX == appleX && snakeY == appleY) {
                 tailSize++;
+                
+                // imcrement length counter
+                points.innerHTML = points.innerHTML.substring(0, points.innerHTML.length-tailSize.toString().length) + tailSize;
 
                 appleX = Math.floor(Math.random() * gridSize);
                 appleY = Math.floor(Math.random() * gridSize);
@@ -91,6 +99,9 @@
                 //snake bites it's tail?
                 if (snakeTrail[i].x == snakeX && snakeTrail[i].y == snakeY) {
                     tailSize = defaultTailSize;
+
+                    // set length count to zero
+                    points.innerHTML = points.innerHTML.substring(0, points.innerHTML.length-tailSize.toString().length) + tailSize;
                 }
             }
 
