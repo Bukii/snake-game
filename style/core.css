@@ -17,6 +17,15 @@ body {
     text-align: center;
 }
 
+span {
+    color: #ffae00;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: unset;
+}
+
 canvas {
     border-radius: 20px;
 }
