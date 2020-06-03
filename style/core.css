@@ -10,9 +10,18 @@ body {
     font-family: 'DM Mono', monospace;
     font-weight: 300;
     margin: 0;
-    display: flex; 
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+
+div.inner {
+    position: relative;
+    width: 80%;
+    height: 100%;
+    display: flex;
     flex-direction: column;
-    justify-content: center; 
+    justify-content: center;
     align-items: center;
     text-align: center;
 }
@@ -21,19 +30,32 @@ span {
     color: #ffae00;
 }
 
-a, a:visited {
+span#brightness {
+    cursor: pointer;
+    user-select: none;
+}
+
+a,
+a:visited {
     text-decoration: none;
     color: unset;
 }
 
-div.data {
+div.change-theme {
+    position: absolute;
+    top: 0;
+    right: 5%;
+}
+
+div.inner div.data {
     margin: 16px 0;
 }
-div.data p {
+
+div.inner div.data p {
     margin: 0;
     font-style: italic;
 }
 
-canvas {
+div.inner canvas {
     border-radius: 20px;
 }
