@@ -88,6 +88,34 @@
 
                 appleX = Math.floor(Math.random() * gridSize);
                 appleY = Math.floor(Math.random() * gridSize);
+
+                var done = true;
+                while (true) {
+                    // reset done after every try to get proper results
+                    done = true;
+
+                    for (var i = 0; i < snakeTrail.length; i++) {
+                        if (snakeTrail[i].x == appleX && snakeTrail[i].y == appleY) {
+                            // if x and y coordinate of any part of the snakeTrail is equal to the apples position
+                            // get new appleX and appleY
+                            appleX = Math.floor(Math.random() * gridSize);
+                            appleY = Math.floor(Math.random() * gridSize);
+
+                            // set done to false, so it will loop another time to check if the new apples coordinates
+                            // don't match the coordinates of any part of the snake
+                            done = false;
+
+                            // could also use break but since that worked for me, I just kept it
+                            i = snakeTrail.length;
+                        }
+                    }
+
+                    // if done is true (if the coordinates don't interfere with each other) 
+                    //it breaks out of the while and continues with the normal code
+                    if (done) {
+                        break;
+                    }
+                }
             }
 
             //paint background
@@ -193,7 +221,7 @@
             myErrorMsg.style.top = rect.bottom + "px";
             myErrorMsg.style.color = "red";
             myErrorMsg.innerHTML = "Unable to move into myself!";
-            
+
             // output the error message after the canvas
             canvas.after(myErrorMsg);
         }
