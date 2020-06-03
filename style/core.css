@@ -26,6 +26,14 @@ a, a:visited {
     color: unset;
 }
 
+div.data {
+    margin: 16px 0;
+}
+div.data p {
+    margin: 0;
+    font-style: italic;
+}
+
 canvas {
     border-radius: 20px;
 }

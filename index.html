@@ -15,20 +15,25 @@
 <body>
     <h1>The one and only snake game!</h1>
     <p>created by <span><a href="https://github.com/Bukii">Lukas W.</a></span></p>
-    <p id="points">Length: </p>
+    <div class="data">
+        <p id="points">Length: </p>
+        <p id="highScore">Highest Score: </p>
+    </div>
     <br>
     <canvas id="canvas" width="400" height="400"></canvas>
 
     <script>
-        var canvas, ctx, points, errorMsg;
+        var canvas, ctx, points, errorMsg, highScore;
 
         window.onload = function () {
             canvas = document.getElementById("canvas");
             ctx = canvas.getContext("2d");
             points = document.getElementById("points");
+            highScore = document.getElementById("highScore");
 
-            // initial set of the length counter
+            // initial sets
             points.innerHTML += tailSize;
+            highScore.innerHTML += highestScore;
 
             document.addEventListener("keydown", keyDownEvent);
 
@@ -40,6 +45,7 @@
         // game world
         var gridSize = (tileSize = 20); // 20 x 20 = 400 and that's the size of the canvas
         var nextX = (nextY = 0);
+        var highestScore = 0;
 
         // snake
         var defaultTailSize = 2;
@@ -134,6 +140,15 @@
 
                 //snake bites it's tail?
                 if (snakeTrail[i].x == snakeX && snakeTrail[i].y == snakeY) {
+                    oldHighScoreSize = highestScore.toString().length;
+
+                    // set highScore if it's your new best
+                    if (tailSize > highestScore && snakeDir != 0) {
+                        highestScore = tailSize;
+                        highScore.innerHTML = highScore.innerHTML.substring(0, highScore.innerHTML.length -
+                            oldHighScoreSize) + highestScore;
+                    }
+
                     tailSize = defaultTailSize;
 
                     // set length count to zero
