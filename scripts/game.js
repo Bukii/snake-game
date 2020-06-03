@@ -67,27 +67,35 @@ function draw() {
         points.innerHTML = points.innerHTML.substring(0, points.innerHTML.length - oldTailSize) +
             tailSize;
 
-        appleX = Math.floor(Math.random() * gridSize);
-        appleY = Math.floor(Math.random() * gridSize);
+        var oldAppleX = appleX;
+        var oldAppleY = appleY;
+
+        getNewAppleCoords();
 
         var done = true;
         while (true) {
             // reset done after every try to get proper results
             done = true;
 
-            for (var i = 0; i < snakeTrail.length; i++) {
-                if (snakeTrail[i].x == appleX && snakeTrail[i].y == appleY) {
-                    // if x and y coordinate of any part of the snakeTrail is equal to the apples position
-                    // get new appleX and appleY
-                    appleX = Math.floor(Math.random() * gridSize);
-                    appleY = Math.floor(Math.random() * gridSize);
+            if (appleX == oldAppleX && appleY == oldAppleY) {
+                // if new apple coords match the old ones (same place), then get new coords
+                // and check them again
+                getNewAppleCoords();
+                done = false;
+            } else {
+                for (var i = 0; i < snakeTrail.length; i++) {
+                    if (snakeTrail[i].x == appleX && snakeTrail[i].y == appleY) {
+                        // if x and y coordinate of any part of the snakeTrail is equal to the apples position
+                        // get new appleX and appleY
+                        getNewAppleCoords();
 
-                    // set done to false, so it will loop another time to check if the new apples coordinates
-                    // don't match the coordinates of any part of the snake
-                    done = false;
+                        // set done to false, so it will loop another time to check if the new apples coordinates
+                        // don't match the coordinates of any part of the snake
+                        done = false;
 
-                    // could also use break but since that worked for me, I just kept it
-                    i = snakeTrail.length;
+                        // could also use break but since that worked for me, I just kept it
+                        i = snakeTrail.length;
+                    }
                 }
             }
 
@@ -143,4 +151,9 @@ function draw() {
     while (snakeTrail.length > tailSize) {
         snakeTrail.shift();
     }
+}
+
+function getNewAppleCoords() {
+    appleX = Math.floor(Math.random() * gridSize);
+    appleY = Math.floor(Math.random() * gridSize);
 }
