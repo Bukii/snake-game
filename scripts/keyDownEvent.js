@@ -2,41 +2,38 @@
 // starting with left and then going clockwise
 function keyDownEvent(e) {
     switch (e.keyCode) {
+        case 32: // space for pause
+            // this is the simplified version of if else to switch the boolean state of "pause"
+            pause = !pause;
+            break;
         case 37: // left
-            if (snakeDir != 39) {
-                nextX = -1;
-                nextY = 0;
-                snakeDir = 37;
-            } else {
-                unableKeyEvent();
-            }
+            // 39: When the current direction is this number, a error message will be shown
+            // -1: The snake will move one tile to the left (x-coordinate)
+            // 0: The snake will stay on the same level on the y-axis
+            // 37: The pressed keyCode (stands for "left") - To define the new direction
+            checkIfValid(39, -1, 0, 37);
             break;
         case 38: // up
-            if (snakeDir != 40) {
-                nextX = 0;
-                nextY = -1;
-                snakeDir = 38;
-            } else {
-                unableKeyEvent();
-            }
+            checkIfValid(40, 0, -1, 38);
             break;
         case 39: // right
-            if (snakeDir != 37) {
-                nextX = 1;
-                nextY = 0;
-                snakeDir = 39;
-            } else {
-                unableKeyEvent();
-            }
+            checkIfValid(37, 1, 0, 39);
             break;
         case 40: // down
-            if (snakeDir != 38) {
-                nextX = 0;
-                nextY = 1;
-                snakeDir = 40;
-            } else {
-                unableKeyEvent();
-            }
+            checkIfValid(38, 0, 1, 40);
             break;
+    }
+}
+
+// function to check validation, so there's no duplicate code
+function checkIfValid(wrongDir, x, y, newDir) {
+    if (!pause) {
+        if (snakeDir != wrongDir) {
+            nextX = x;
+            nextY = y;
+            snakeDir = newDir;
+        } else {
+            unableKeyEvent();
+        }
     }
 }

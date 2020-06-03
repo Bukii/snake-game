@@ -1,5 +1,6 @@
 var themeButton = document.getElementById("brightness");
 var span = document.getElementsByTagName("span");
+var pauseDiv = document.getElementById("pause-screen");
 themeButton.addEventListener("click", clickHandler);
 
 function clickHandler() {
@@ -14,6 +15,7 @@ function clickHandler() {
         for (var i = 0; i < span.length; i++) {
             span[i].style.color = lightPrimaryColr;
         }
+        pauseDiv.style.backgroundColor = lightPauseColr;
 
         // adjust the fillStyle the grid should be colored
         canvasFillStyle = "black";
@@ -28,6 +30,7 @@ function clickHandler() {
         for (var i = 0; i < span.length; i++) {
             span[i].style.color = darkPrimaryColr;
         }
+        pauseDiv.style.backgroundColor = darkPauseColr;
 
         // adjust the fillStyle the grid should be colored
         canvasFillStyle = "white";

@@ -15,14 +15,21 @@ var colorTheme = {
 // light mode
 var lightBGColr = "#FFFFFF";
 var lightErrColr = "#B00020";
+var lightPauseColr = "#FFFFFF";
 var lightPrimaryColr = colorTheme[500];
 
 // dark mode
 var darkBGColr = "#121212";
 var darkErrColr = "#CF6679";
+var darkPauseColr = "#121212";
 var darkPrimaryColr = colorTheme[200];
 
 var errColr = lightErrColr;
 function getErrColr() {
     return errColr = (canvasFillStyle.match("black")) ? lightErrColr : darkErrColr;
+}
+
+var pauseColr = lightPauseColr;
+function getPauseColr() {
+    return pauseColr = (canvasFillStyle.match("black")) ? lightPauseColr : darkPauseColr;
 }

@@ -29,3 +29,5 @@ By clicking one of the arrow keys the snake is going to start moving in the dire
 - ⬆️ : move upwards
 - ➡️ : move right
 - ⬇️ : move downwards
+
+- *󠀠Space Bar* : pause screen
